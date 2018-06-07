@@ -35,28 +35,15 @@ public class App {
 
         try {
             List<Land> temp = kingdoms.get(0).king.getLands().subList(0, 2);
-            king1.vassalize(lurd5, temp, 100);
-            king1.vassalize(lurd2, kingdoms.get(0).king.getLands(), 200);
-            System.out.println("XD " + king1);
-            temp = lurd5.getLands().subList(0, 1);
-            lurd5.vassalize(lurd1, temp, 500);
-            System.out.println("XD " + lurd5);
-            temp = kingdoms.get(1).king.getLands().subList(0, 1);
-            System.out.println("XD " + lurd5);
-
-            king2.vassalize(lurd3, temp, 300);
-            System.out.println("XD " + lurd5);
-
-            king2.vassalize(lurd4, kingdoms.get(1).king.getLands(), 350);
-            System.out.println("XD " + lurd5);
-
+            lurd5 = king1.vassalize(lurd5, temp, 100);
+            lurd2 = king1.vassalize(lurd2, kingdoms.get(0).king.getLands(), 200);
+            lurd1 = lurd5.vassalize(lurd1, lurd5.getLands().subList(0, 1), 500);
+            lurd3 = king2.vassalize(lurd3, kingdoms.get(1).king.getLands().subList(0, 1), 300);
+            lurd4 = king2.vassalize(lurd4, kingdoms.get(1).king.getLands(), 350);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        System.out.println(king1.getVassals());//.get(0).getVassals());
-        System.out.println("XD " + lurd5);
-        System.out.println("ZW " + lurd1);
+        System.out.println(king1.getVassals());
     }
 }
