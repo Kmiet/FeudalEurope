@@ -41,15 +41,16 @@ public class Lord {
         return sum;
     }
 
-    public void vassalize(Lord vassalee, List<Land> lands, int warriors) throws Exception {
+    public Vassal vassalize(Lord vassalee, List<Land> lands, int warriors) throws Exception {
         if (this.getVassals().size() > 7) {
             throw new Exception("Cannot have more than 7 vassals");
         } else if(vassalee instanceof Vassal) {
             throw new Exception("Vassal cannot break his vow");
         } else {
             vassalee.getLands().addAll(lands);
-            this.vassals.add(new Vassal(vassalee, this, vassalee.getLands(), warriors));
-            List<Land> result = new LinkedList<Land>();
+            Vassal retvassal = new Vassal(vassalee, this, vassalee.getLands(), warriors);
+            this.vassals.add(retvassal);
+            List<Land> result = new LinkedList<>();
             for (Land land: this.lands) {
                 if (!lands.contains(land)) {
                     result.add(land);
@@ -57,8 +58,11 @@ public class Lord {
             }
             System.out.println(result);
             this.lands = result;
+            return retvassal;
         }
     }
+
+
 
     @Override
     public String toString() {
