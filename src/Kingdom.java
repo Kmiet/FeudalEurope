@@ -27,7 +27,8 @@ public class Kingdom {
         for (Vassal vassal: other.king.getVassals()) {
             enemyArmy += vassal.callToArms();
         }
-        return ourArmy / (ourArmy + enemyArmy);
+
+        return ((double) ourArmy/ (double) (ourArmy + enemyArmy));
     }
 
     @Override
